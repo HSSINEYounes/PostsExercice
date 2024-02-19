@@ -1,0 +1,28 @@
+<div>
+    <a class="btn btn-secondary mb-3" [routerLink]="['/']">Go Back</a>
+</div>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            Post Details
+        </div>
+        <div class="card-body" *ngIf="post">
+            <h5 class="card-title">Title: {{post.title}}</h5>
+            <p class="card-text"><strong>Body:</strong> {{post.body}}</p>
+            <p class="card-text"><strong>User ID:</strong> {{post.userId}}</p>
+            <p class="card-text"><strong>Post ID:</strong> {{post.id}}</p>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <h4>Comments</h4>
+        <div class="list-group">
+            <div class="list-group-item" *ngFor="let elt of comments">
+                <small class="text-muted">Comment ID: {{elt.id}}</small>
+                <h5 class="mb-1">{{elt.name}} <small class="text-muted">({{elt.email}})</small></h5>
+                <p class="mb-1">{{elt.body}}</p>
+            </div>
+        </div>
+    </div>
+</div>
