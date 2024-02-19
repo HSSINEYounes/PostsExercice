@@ -8,7 +8,13 @@
   <title>Home</title>
 </head>
 <body>
-  <table class="table">
+  <div class="input-group mb-3" style="width: 60%; margin:auto; margin-top: 2%;">
+    <span class="input-group-text" id="basic-addon1">
+      <fa-icon [icon]="faMagnifyingGlass" style="font-size: 20px;"></fa-icon>
+    </span>
+    <input type="text" [(ngModel)]="searchKeyword" placeholder="Search by keyword" class="form-control" aria-label="filter" aria-describedby="basic-addon1" (input)="filterPosts()" >
+  </div>
+  <table class="table" style="width: 80%; margin: auto;">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -19,20 +25,21 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let elt of posts">
+      <tr *ngFor="let elt of filteredPosts">
         <td>{{elt.id}}</td>
         <td>{{elt.userId}}</td>
         <td>{{elt.title}}</td>
         <td>{{elt.body}}</td>
         <td>
-          wordCount(elt) HERE
+          {{wordCount(elt.body)}}
         </td>
-        
         <td>
-          <button type="button" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-danger" (click)="delete(elt.id)"><fa-icon [icon]="faTrash" style="font-size: 20px;"></fa-icon></button>
+          
         </td>
       </tr>
     </tbody>
   </table>
+  
 </body>
 </html>
